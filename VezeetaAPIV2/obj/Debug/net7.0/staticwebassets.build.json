@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "Yqrlb0EA0iKVqg7wlJ4Pnhoo0lpM4Ynth4WXMsuOYtM=",
+  "Source": "VezeetaAPIV2",
+  "BasePath": "_content/VezeetaAPIV2",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "VezeetaAPIV2\\wwwroot",
+      "Source": "VezeetaAPIV2",
+      "ContentRoot": "F:\\Development\\VezeetaAPIV2\\VezeetaAPIV2\\wwwroot\\",
+      "BasePath": "_content/VezeetaAPIV2",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "F:\\Development\\VezeetaAPIV2\\VezeetaAPIV2\\wwwroot\\images\\9595ffce-6089-4e65-98c0-d10622e2c480.jpg",
+      "SourceId": "VezeetaAPIV2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Development\\VezeetaAPIV2\\VezeetaAPIV2\\wwwroot\\",
+      "BasePath": "_content/VezeetaAPIV2",
+      "RelativePath": "images/9595ffce-6089-4e65-98c0-d10622e2c480.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\9595ffce-6089-4e65-98c0-d10622e2c480.jpg"
+    },
+    {
+      "Identity": "F:\\Development\\VezeetaAPIV2\\VezeetaAPIV2\\wwwroot\\images\\a7d5bbbc-0792-40e5-9674-4638cac67165.jpg",
+      "SourceId": "VezeetaAPIV2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Development\\VezeetaAPIV2\\VezeetaAPIV2\\wwwroot\\",
+      "BasePath": "_content/VezeetaAPIV2",
+      "RelativePath": "images/a7d5bbbc-0792-40e5-9674-4638cac67165.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a7d5bbbc-0792-40e5-9674-4638cac67165.jpg"
+    },
+    {
+      "Identity": "F:\\Development\\VezeetaAPIV2\\VezeetaAPIV2\\wwwroot\\images\\c0c1686a-5c74-48ae-b25d-c08b53a59d18.jpg",
+      "SourceId": "VezeetaAPIV2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Development\\VezeetaAPIV2\\VezeetaAPIV2\\wwwroot\\",
+      "BasePath": "_content/VezeetaAPIV2",
+      "RelativePath": "images/c0c1686a-5c74-48ae-b25d-c08b53a59d18.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\c0c1686a-5c74-48ae-b25d-c08b53a59d18.jpg"
+    }
+  ]
+}
