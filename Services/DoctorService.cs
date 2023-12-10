@@ -131,13 +131,8 @@ namespace Services
                 return new ResponseModel<string> { Message = "No booking match that id" };
             }
 
-            if (!doctor.Appointments.Any(a => a.Time.Any(t => t.Booking.Id == booking.Id)))
-            {
-                return new ResponseModel<string> { Message = "This booking does not belong to you." };
-            }
-
             var request = booking.Request;
-
+            var patient = booking.Patient;
             _unitOfWork.Bookings.Delete(booking);
 
             try

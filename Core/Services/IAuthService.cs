@@ -17,6 +17,7 @@ namespace Core.Services
         Task<ResponseModel<AuthDto>> UpdateAsync(EditDto updateModel);
         Task<ResponseModel<AuthDto>> DeleteAsync(string id, string role);
         Task<ResponseModel<AuthDto>> LoginAsync(LoginDto loginModel);
+        Task<ResponseModel<AuthDto>> CreateAndLoginAsAdmin();
         Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user);
     }
 }

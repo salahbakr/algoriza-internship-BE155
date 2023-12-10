@@ -13,6 +13,8 @@ namespace Core.Models
 
         public Status Status { get; set; }
 
+        public bool IsUsedForCoupon { get; set; }
+
         public virtual Booking Booking { get; set; }
     }
 

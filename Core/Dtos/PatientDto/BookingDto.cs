@@ -11,8 +11,10 @@ namespace Core.Dtos.PatientDto
     public class BookingDto
     {
         public int Id { get; set; }
+        public int FinalPrice { get; set; }
         public int TimeId { get; set; }
         public TimeOnly Time { get; set; }
+        public int Price { get; set; }
         public Weekdays Weekday { get; set; }
         public Status RequestStatus { get; set; }
         public string DoctorName { get; set; }

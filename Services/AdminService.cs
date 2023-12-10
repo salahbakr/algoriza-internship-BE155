@@ -145,5 +145,86 @@ namespace Services
 
             return new ResponseModel<PatientDto> { Message = "Retrieved doctor", Success = true, Data = patientDto };
         }
+
+        public async Task<ResponseModel<Coupon>> AddCoupon(CouponDto couponDto)
+        {
+            var coupon = _mapper.Map<Coupon>(couponDto);
+
+            await _unitOfWork.Coupons.CreateAsync(coupon);
+
+            try
+            {
+                _unitOfWork.Complete();
+            }
+            catch (DbUpdateException)
+            {
+                return new ResponseModel<Coupon> { Message = "Something went wrong" };
+            }
+
+            return new ResponseModel<Coupon> { Message = "Successfully added coupon" };
+        }
+
+        public async Task<ResponseModel<IEnumerable<Coupon>>> GetAllCoupons(string search = "", int page = 1, int PageSize = 5)
+        {
+            var coupons = await _unitOfWork.Coupons.GetAllPaginatedFilteredAsync(c => c.Name.Contains(search), page, PageSize);
+
+            var meta = new Metadata
+            {
+                Page = page,
+                PageSize = PageSize,
+                Next = page + 1,
+                Previous = page - 1
+            };
+
+            return new ResponseModel<IEnumerable<Coupon>> { Message = "Successfully added coupon", Success = true, Data = coupons, MetaData = meta };
+        }
+
+        public async Task<ResponseModel<Coupon>> DeactivateCoupon(int couponId)
+        {
+            var coupon = await _unitOfWork.Coupons.GetByIdAsync(couponId);
+
+            if (coupon is null)
+            {
+                return new ResponseModel<Coupon> { Message = " no coupon match that id" };
+            }
+
+            coupon.IsActive = false;
+
+            _unitOfWork.Coupons.Update(coupon);
+
+            try
+            {
+                _unitOfWork.Complete();
+            }
+            catch (DbUpdateException)
+            {
+                return new ResponseModel<Coupon> { Message = "Something went wrong." };
+            }
+
+            return new ResponseModel<Coupon> { Message = "Successfully updated coupon", Success = true, Data = coupon};
+        }
+
+        public async Task<ResponseModel<Coupon>> DeleteCoupon(int couponId)
+        {
+            var coupon = await _unitOfWork.Coupons.GetByIdAsync(couponId);
+
+            if (coupon is null)
+            {
+                return new ResponseModel<Coupon> { Message = " no coupon match that id" };
+            }
+
+            _unitOfWork.Coupons.Delete(coupon);
+
+            try
+            {
+                _unitOfWork.Complete();
+            }
+            catch (DbUpdateException)
+            {
+                return new ResponseModel<Coupon> { Message = "Something went wrong." };
+            }
+
+            return new ResponseModel<Coupon> { Message = "Successfully deleted coupon", Success = true, Data = coupon};
+        }
     }
 }

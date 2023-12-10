@@ -37,6 +37,9 @@ namespace Repository.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CouponId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
@@ -105,6 +108,8 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CouponId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -150,6 +155,9 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("FinalPrice")
+                        .HasColumnType("int");
+
                     b.Property<string>("PatientId")
                         .HasColumnType("nvarchar(450)");
 
@@ -170,6 +178,35 @@ namespace Repository.Migrations
                         .IsUnique();
 
                     b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("Core.Models.Coupon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Discound")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DiscoundType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfRequests")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupons");
                 });
 
             modelBuilder.Entity("Core.Models.DayTime", b =>
@@ -204,6 +241,9 @@ namespace Repository.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsUsedForCoupon")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -232,6 +272,28 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Specializations");
+                });
+
+            modelBuilder.Entity("Core.Models.UsedCoupons", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CoupounId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PatientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoupounId");
+
+                    b.ToTable("UsedCoupons");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -369,6 +431,10 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Core.Models.ApplicationUser", b =>
                 {
+                    b.HasOne("Core.Models.Coupon", null)
+                        .WithMany("Patients")
+                        .HasForeignKey("CouponId");
+
                     b.HasOne("Core.Models.Specialization", "Specialize")
                         .WithMany("Doctors")
                         .HasForeignKey("SpecializeId");
@@ -426,6 +492,17 @@ namespace Repository.Migrations
                     b.HasOne("Core.Models.ApplicationUser", null)
                         .WithMany("Requests")
                         .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("Core.Models.UsedCoupons", b =>
+                {
+                    b.HasOne("Core.Models.Coupon", "Coupoun")
+                        .WithMany()
+                        .HasForeignKey("CoupounId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coupoun");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -491,6 +568,11 @@ namespace Repository.Migrations
             modelBuilder.Entity("Core.Models.Appointment", b =>
                 {
                     b.Navigation("Time");
+                });
+
+            modelBuilder.Entity("Core.Models.Coupon", b =>
+                {
+                    b.Navigation("Patients");
                 });
 
             modelBuilder.Entity("Core.Models.DayTime", b =>

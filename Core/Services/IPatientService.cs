@@ -11,8 +11,9 @@ namespace Core.Services
     public interface IPatientService
     {
         Task<ResponseModel<IEnumerable<GetAllDoctorsDto>>> GetAllAppointmentsAsync(string search, int page = 1, int pageSize = 5);
-        Task<ResponseModel<BookingDto>> BookingAsync(string patientId, int timeId);
+        Task<ResponseModel<BookingDto>> BookingAsync(string patientId, int timeId, int couponId = 0);
         Task<ResponseModel<IEnumerable<BookingDto>>> GetAllBooking(string patientId, int page = 1, int pageSize = 5);
         Task<ResponseModel<Booking>> CancelBooking(string patientId, int bookingId);
+        Task<ResponseModel<List<Coupon>>> AvailableCoupons(string patientId);
     }
 }

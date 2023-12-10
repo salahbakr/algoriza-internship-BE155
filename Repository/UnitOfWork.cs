@@ -19,6 +19,8 @@ namespace Repository
         public IBaseRepository<Request> Requests { get; private set; }
         public IBaseRepository<Booking> Bookings { get; private set; }
         public IBaseRepository<DayTime> Time { get; private set; }
+        public IBaseRepository<Coupon> Coupons { get; private set; }
+        public IBaseRepository<UsedCoupons> UsedCoupons { get; private set; }
         public IAuthRepository AuthRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
@@ -30,6 +32,8 @@ namespace Repository
             Requests = new BaseRepository<Request>(_context);
             Bookings = new BaseRepository<Booking>(_context);
             Time = new BaseRepository<DayTime>(_context);
+            Coupons = new BaseRepository<Coupon>(_context);
+            UsedCoupons = new BaseRepository<UsedCoupons>(_context);
             AuthRepository = new AuthRepository(userManager);
         }
 

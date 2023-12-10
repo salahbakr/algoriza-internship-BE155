@@ -45,15 +45,27 @@ namespace Services.Helpers
             
             CreateMap<DayTime, DayTimeDto>()
                 .ReverseMap();   
+            
+            CreateMap<Coupon, CouponDto>()
+                .ReverseMap();   
 
             CreateMap<Booking, GetAllDoctorBooking>()
                 .ForMember(dest => dest.PatientName, src => src.MapFrom(src => src.Patient.FirstName + " " + src.Patient.LastName))
+                .ForMember(dest => dest.Price, src => src.MapFrom(src => src.Time.Appointment.Price))
+                .ForMember(dest => dest.FinalPrice, src => src.MapFrom(src => src.FinalPrice))
                 .ForMember(dest => dest.Gender, src => src.MapFrom(src => src.Patient.Gender))
                 .ForMember(dest => dest.DateOfBirth, src => src.MapFrom(src => src.Patient.DateOfBirth))
                 .ForMember(dest => dest.Gender, src => src.MapFrom(src => src.Patient.Gender))
-                .ForMember(dest => dest.Time, src => src.MapFrom(src => new DayTimeDto { Time = src.Time.Time}))
-                .ForMember(dest => dest.Request, src => src.MapFrom(src => new RequestDto { Status = src.Request.Status}))
+                .ForMember(dest => dest.Time, src => src.MapFrom(src => new DayTimeDto { Id = src.TimeId, Time = src.Time.Time}))
+                .ForMember(dest => dest.Request, src => src.MapFrom(src => new RequestDto { Id = src.Request.Id, Status = src.Request.Status}))
                 .ReverseMap();
+
+            CreateMap<Booking, BookingDto2>()
+                .ForMember(dest => dest.PatientId, src => src.MapFrom(src => src.Patient.Id))
+                .ForMember(dest => dest.PatientName, src => src.MapFrom(src => src.Patient.FirstName + " " + src.Patient.LastName))
+                .ForMember(dest => dest.FinalPrice, src => src.MapFrom(src => src.FinalPrice))
+                .ReverseMap();
+
 
             CreateMap<Booking, BookingDto>()
                 .ForMember(dest => dest.TimeId, src => src.MapFrom(src => src.Time.Id))
@@ -61,6 +73,8 @@ namespace Services.Helpers
                 .ForMember(dest => dest.DoctorName, src => src.MapFrom(src => src.Time.Appointment.Doctor.FirstName + " " + src.Time.Appointment.Doctor.LastName))
                 .ForMember(dest => dest.RequestStatus, src => src.MapFrom(src => src.Request.Status))
                 .ForMember(dest => dest.Weekday, src => src.MapFrom(src => src.Time.Appointment.Weekdays))
+                .ForMember(dest => dest.Price, src => src.MapFrom(src => src.Time.Appointment.Price))
+                .ForMember(dest => dest.FinalPrice, src => src.MapFrom(src => src.FinalPrice))
                 .ReverseMap();
 
             CreateMap<ApplicationUser, GetAllDoctorsDto>();

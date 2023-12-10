@@ -5,6 +5,7 @@ using Core.JWTModels;
 using Core.Models;
 using Core.Repositories;
 using Core.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -35,6 +36,33 @@ namespace Services
             _imageService = imageService;
             _jwt = jwt.Value;
             _mapper = mapper;
+        }
+
+        public async Task<ResponseModel<AuthDto>> CreateAndLoginAsAdmin()
+        {
+            if (await _unitOfWork.AuthRepository.GetUserByEmailAsync("Algoriza@gmail.com") is not null)
+            {
+                var loginDto = new LoginDto
+                {
+                    Username = "Algoriza",
+                    Password = "0167519Kh!"
+                };
+
+                return await LoginAsync(loginDto);
+            }
+            var applicationUser = new PatientRegisterDto
+            {
+                FirstName = "Algoriza",
+                UserName = "Algoriza",
+                Email = "Algoriza@gmail.com",
+                Password = "0167519Kh!",
+                LastName = "BackEnd Internship",
+                Phone = "01013854588",
+                Gender = (Core.Dtos.AuthenticationDtos.Gender)Core.Models.Gender.Male,
+                DateOfBirth = new DateTime(2001, 5, 7)
+            };
+
+            return await RegisterAsync(applicationUser, "Admin");
         }
 
         public async Task<ResponseModel<AuthDto>> RegisterAsync<TRegisterDto>(TRegisterDto registerModel, string role) where TRegisterDto : BaseRegisterDto

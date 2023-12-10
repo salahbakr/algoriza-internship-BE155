@@ -36,6 +36,16 @@ namespace Repository.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllByPropertyAsync(Expression<Func<T, bool>> criteria)
+        {
+            return await _context.Set<T>().Where(criteria).ToListAsync();
+        }
+
         public async Task<T> CreateAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);

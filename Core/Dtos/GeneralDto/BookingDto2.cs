@@ -13,6 +13,7 @@ namespace Core.Dtos.GeneralDto
 
         public string PatientId { get; set; }
         public string PatientName { get; set; }
+        public int FinalPrice { get; set; }
 
         public RequestDto Request { get; set; }
     }

@@ -12,6 +12,8 @@ namespace Core.Dtos.DoctorDto
     public class GetAllDoctorBooking
     {
         public int Id { get; set; }
+        public int FinalPrice { get; set; }
+        public int Price { get; set; }
         public string PatientName { get; set; }
         public AdminDtos.Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }

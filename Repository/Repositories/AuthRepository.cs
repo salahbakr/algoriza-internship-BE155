@@ -142,6 +142,12 @@ namespace Repository.Repositories
             }
         }
 
+        public async Task<int> GetUsersInRoleCount(string roleName)
+        {
+            var usersInRole = await _userManager.GetUsersInRoleAsync(roleName);
+            return usersInRole.Count;
+        }
+
         internal ResponseModel<AuthDto> ErrorMessage(IdentityResult result)
         {
             var errors = string.Empty;

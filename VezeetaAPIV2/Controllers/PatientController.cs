@@ -66,11 +66,11 @@ namespace VezeetaAPIV2.Controllers
         
         [Authorize(Roles = "Patient")]
         [HttpPost("Booking/id={timeId}")]
-        public async Task<IActionResult> Booking(int timeId)
+        public async Task<IActionResult> Booking(int timeId, int couponId = 0)
         {
             var userId = User.FindFirst("uid")?.Value;
 
-            var result = await _petientService.BookingAsync(userId, timeId);
+            var result = await _petientService.BookingAsync(userId, timeId, couponId);
 
             if (!result.Success)
             {
@@ -103,6 +103,22 @@ namespace VezeetaAPIV2.Controllers
             var userId = User.FindFirst("uid")?.Value;
 
             var result = await _petientService.CancelBooking(userId, bookingId);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+        
+        [Authorize(Roles = "Patient")]
+        [HttpGet("Booking/AvailableCoupons")]
+        public async Task<IActionResult> GetAvailableCoupons()
+        {
+            var userId = User.FindFirst("uid")?.Value;
+
+            var result = await _petientService.AvailableCoupons(userId);
 
             if (!result.Success)
             {

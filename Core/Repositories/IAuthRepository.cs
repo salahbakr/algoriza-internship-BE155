@@ -26,5 +26,6 @@ namespace Core.Repositories
         Task<IList<string>> GetRolesAsync(ApplicationUser user);
         Task<bool> IsEmailExistAsync(string email);
         Task<bool> IsUserNameExistAsync(string userName);
+        Task<int> GetUsersInRoleCount(string roleName);
     }
 }

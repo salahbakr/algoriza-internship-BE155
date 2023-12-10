@@ -12,6 +12,8 @@ namespace Core.Models
     {
         public int Id { get; set; }
 
+        public int FinalPrice { get; set; }
+
         [JsonIgnore]
         public virtual ApplicationUser Patient { get; set; }
 

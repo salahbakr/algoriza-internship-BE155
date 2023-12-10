@@ -14,6 +14,6 @@ namespace Core.Dtos.GeneralDto
 
         public Weekdays Weekdays { get; set; }
 
-        public virtual ICollection<DayTimeDto> Time { get; set; }
+        public ICollection<DayTimeDto> Time { get; set; }
     }
 }

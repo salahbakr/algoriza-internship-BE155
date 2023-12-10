@@ -1,11 +1,13 @@
 ﻿using Core;
 using Core.Dtos.AuthenticationDtos;
 using Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace VezeetaAPIV2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("admin/doctor")]
     [ApiController]
     public class AdminDoctorController : ControllerBase
