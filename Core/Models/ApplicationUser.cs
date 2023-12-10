@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Core.Models
@@ -25,8 +26,14 @@ namespace Core.Models
         public DateTime DateOfBirth { get; set; }
 
         public virtual Specialization? Specialize { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Request>? Requests { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Appointment>? Appointments { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Booking>? Bookings { get; set; }
     }
 

@@ -271,3 +271,4 @@ F:\Development\VezeetaAPIV2\VezeetaAPIV2\bin\Debug\net7.0\Microsoft.EntityFramew
 F:\Development\VezeetaAPIV2\VezeetaAPIV2\bin\Debug\net7.0\Services.dll
 F:\Development\VezeetaAPIV2\VezeetaAPIV2\bin\Debug\net7.0\Services.pdb
 F:\Development\VezeetaAPIV2\VezeetaAPIV2\bin\Debug\net7.0\EntityFrameworkCore.SqlServer.DateOnlyTimeOnly.dll
+F:\Development\VezeetaAPIV2\VezeetaAPIV2\obj\Debug\net7.0\VezeetaAPIV2.sourcelink.json

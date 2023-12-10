@@ -16,3 +16,4 @@ F:\Development\VezeetaAPIV2\Repository\obj\Debug\net7.0\Repository.pdb
 F:\Development\VezeetaAPIV2\Repository\obj\Debug\net7.0\Repository.genruntimeconfig.cache
 F:\Development\VezeetaAPIV2\Repository\obj\Debug\net7.0\ref\Repository.dll
 F:\Development\VezeetaAPIV2\Repository\obj\Debug\net7.0\EFCoreSqlServerDateOnlyTimeOnly.cs
+F:\Development\VezeetaAPIV2\Repository\obj\Debug\net7.0\Repository.sourcelink.json

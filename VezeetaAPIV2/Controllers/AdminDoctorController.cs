@@ -28,10 +28,10 @@ namespace VezeetaAPIV2.Controllers
                 return BadRequest(result);
 
             return Ok(result);
-        }    
+        }
         
         [HttpPut("edit")]
-        public async Task<IActionResult> RegisterAsync([FromForm] EditDto updateModel)
+        public async Task<IActionResult> EditAsync([FromForm] EditDto updateModel)
         {
             var result = await _authService.UpdateAsync(updateModel);
 

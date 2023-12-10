@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core.Dtos.GeneralDto;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,6 @@ namespace Core.Dtos.DoctorDto
 
         public Weekdays Weekdays { get; set; }
 
-        public virtual ICollection<DayTime> Time { get; set; }
+        public virtual ICollection<TimeOnly> TimeOnly { get; set; }
     }
 }

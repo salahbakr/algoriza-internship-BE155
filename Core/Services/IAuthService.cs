@@ -13,7 +13,7 @@ namespace Core.Services
 {
     public interface IAuthService
     {
-        Task<ResponseModel<AuthDto>> RegisterAsync(DoctorRegisterDto registerModel, string role);
+        Task<ResponseModel<AuthDto>> RegisterAsync<TRegisterDto>(TRegisterDto registerModel, string role) where TRegisterDto : BaseRegisterDto;
         Task<ResponseModel<AuthDto>> UpdateAsync(EditDto updateModel);
         Task<ResponseModel<AuthDto>> DeleteAsync(string id, string role);
         Task<ResponseModel<AuthDto>> LoginAsync(LoginDto loginModel);

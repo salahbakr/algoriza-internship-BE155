@@ -18,11 +18,8 @@ namespace Core.Models
 
         public virtual ICollection<DayTime> Time{ get; set; }
 
+        [JsonIgnore]
         public virtual ApplicationUser Doctor { get; set; }
-
-        [ForeignKey("BookingForeignKey")]
-        public int BookingId { get; set; }
-        public virtual Booking? Booking { get; set; }
     }
 
     [JsonConverter(typeof(JsonStringEnumConverter))]

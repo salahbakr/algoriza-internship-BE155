@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Core.Models
@@ -12,10 +13,10 @@ namespace Core.Models
 
         public Status Status { get; set; }
 
-        public string PatientId { get; set; }
-        public virtual ApplicationUser Doctor { get; set; }
+        public virtual Booking Booking { get; set; }
     }
 
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Status
     {
         Pending,

@@ -17,10 +17,6 @@ namespace Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Booking)
-                .WithOne(b => b.Appointment)
-                .HasForeignKey<Booking>(b => b.AppointmentId);
 
             base.OnModelCreating(modelBuilder);
         }

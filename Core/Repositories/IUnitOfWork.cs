@@ -14,6 +14,7 @@ namespace Core.Repositories
         IBaseRepository<Appointment> Appointments { get; }
         IBaseRepository<Request> Requests { get; }
         IBaseRepository<Booking> Bookings { get; }
+        IBaseRepository<DayTime> Time { get; }
 
         int Complete();
     }

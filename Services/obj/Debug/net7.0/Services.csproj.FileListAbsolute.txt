@@ -13,3 +13,4 @@ F:\Development\VezeetaAPIV2\Services\obj\Debug\net7.0\ref\Services.dll
 F:\Development\VezeetaAPIV2\Services\bin\Debug\net7.0\Core.dll
 F:\Development\VezeetaAPIV2\Services\bin\Debug\net7.0\Core.pdb
 F:\Development\VezeetaAPIV2\Services\obj\Debug\net7.0\Services.csproj.CopyComplete
+F:\Development\VezeetaAPIV2\Services\obj\Debug\net7.0\Services.sourcelink.json

@@ -37,7 +37,7 @@ namespace Services
             _mapper = mapper;
         }
 
-        public async Task<ResponseModel<AuthDto>> RegisterAsync(DoctorRegisterDto registerModel, string role)
+        public async Task<ResponseModel<AuthDto>> RegisterAsync<TRegisterDto>(TRegisterDto registerModel, string role) where TRegisterDto : BaseRegisterDto
         {
             if (await _unitOfWork.AuthRepository.IsEmailExistAsync(registerModel.Email))
             {
@@ -60,13 +60,13 @@ namespace Services
 
             Specialization specialize = new Specialization();
 
-            if (role == "Doctor")
+            if (registerModel is DoctorRegisterDto doctorModel)
             {
-                specialize = await _unitOfWork.Specializations.GetByIdAsync(registerModel.SpecializeId);
+                specialize = await _unitOfWork.Specializations.GetByIdAsync(doctorModel.SpecializeId);
 
                 if (specialize is null)
                 {
-                    return new ResponseModel<AuthDto> { Success = false, Message = "No specialize match that id: " + registerModel.SpecializeId };
+                    return new ResponseModel<AuthDto> { Success = false, Message = "No specialize match that id: " + doctorModel.SpecializeId };
                 }
 
                 user.Specialize = specialize;

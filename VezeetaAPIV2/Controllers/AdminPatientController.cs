@@ -1,10 +1,12 @@
 ﻿using Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Printing;
 
 namespace VezeetaAPIV2.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     [Route("/admin/patient")]
     [ApiController]
     public class AdminPatientController : ControllerBase

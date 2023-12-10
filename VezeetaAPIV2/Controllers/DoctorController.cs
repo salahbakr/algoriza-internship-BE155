@@ -5,6 +5,7 @@ using Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VezeetaAPIV2.Controllers
 {
@@ -21,8 +22,57 @@ namespace VezeetaAPIV2.Controllers
             _authService = authService;
         }
 
+        [Authorize(Roles = "Doctor")]
+        [HttpGet("GetAllAppointments")]
+        public async Task<IActionResult> GetAllAppointmentsAsync(int page = 1, int pageSize = 5)
+        {
+            var userId = User.FindFirst("uid")?.Value;
+
+            var result = await _doctorService.GetAllApointmentsAsync(userId, page, pageSize);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [Authorize(Roles = "Doctor")]
+        [HttpGet("GetAllPendingBookings")]
+        public async Task<IActionResult> GetAllPendingBookingsAsync(int page = 1, int pageSize = 5)
+        {
+            var userId = User.FindFirst("uid")?.Value;
+
+            var result = await _doctorService.GetAllPendingBookingsAsync(userId, page, pageSize);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [Authorize(Roles = "Doctor")]
+        [HttpPut("ConfirmBooking/id={bookingId}")]
+        public async Task<IActionResult> ConfirmCheckupsAsync(int bookingId)
+        {
+            var userId = User.FindFirst("uid")?.Value;
+
+            var result = await _doctorService.ConfirmCheckUps(userId, bookingId);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [Authorize(Roles = "Doctor")]
         [HttpPost("AddAppointment")]
-        public async Task<IActionResult> RegisterAppointmentAsync([FromForm] AppointmentDto appointment)
+        public async Task<IActionResult> AddAppointmentAsync([FromForm] AppointmentDto appointment)
         {
             var userId = User.FindFirst("uid")?.Value;
 
@@ -34,10 +84,42 @@ namespace VezeetaAPIV2.Controllers
             }
 
             return Ok(result);
+        }   
+        
+        [Authorize(Roles = "Doctor")]
+        [HttpPut("UpdateAppointment/id={appointmentId}")]
+        public async Task<IActionResult> UpdateAppointmentAsync([FromForm] AppointmentDto appointment, int appointmentId)
+        {
+            var userId = User.FindFirst("uid")?.Value;
+
+            var result = await _doctorService.UpdateAppointmentAsync(appointmentId, appointment, userId);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [Authorize(Roles = "Doctor")]
+        [HttpDelete("DeleteAppointment/id={appointmentId}")]
+        public async Task<IActionResult> DeleteAppointmentAsync(int appointmentId)
+        {
+            var userId = User.FindFirst("uid")?.Value;
+
+            var result = await _doctorService.DeleteAppointmentAsync(appointmentId, userId);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync([FromForm] LoginDto loginModel)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginDto loginModel)
         {
             var result = await _authService.LoginAsync(loginModel);
 
